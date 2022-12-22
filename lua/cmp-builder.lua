@@ -2,15 +2,12 @@ M = {}
 function M.add(pattern_table, cmp_name, trigger_characters, test)
 	local cmp_table = {}
 	local function add_cmp(table, path)
-		print(pattern_table)
 		for _, pattern in pairs(pattern_table) do
-			print("rg -t '" .. pattern .. "' -IN --trim " .. path)
 			local handle = io.popen("rg -ttex '" .. pattern .. "' -IN --trim " .. path)
 			assert(handle)
 			local io_output = handle:read("*a")
 			for line in io_output:gmatch("([^\n]*)\n?") do
 				if line ~= "" then
-					print(line)
 					if(test) then
 						print(line)
 					end
