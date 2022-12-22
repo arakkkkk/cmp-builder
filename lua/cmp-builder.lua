@@ -10,7 +10,7 @@ function M.add(pattern_table, cmp_name, trigger_characters, rg_option, is_test)
 			local io_output = handle:read("*a")
 			for line in io_output:gmatch("([^\n]*)\n?") do
 				if line ~= "" then
-					if test then
+					if is_test then
 						print(line)
 					end
 					table[line] = 1
