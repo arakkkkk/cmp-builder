@@ -41,7 +41,9 @@ function M.add(pattern_table, cmp_name, trigger_characters, rg_option, is_test)
 	---@param params cmp.SourceCompletionApiParams
 	---@param callback fun(response: lsp.CompletionResponse|nil)
 	local function add_tex_ref()
+		print(#cmp_table)
 		cmp_table = add_cmp(cmp_table, vim.fn.expand("%"))
+		print(#cmp_table)
 
 		local cmps = {}
 		for k, _ in pairs(cmp_table) do
