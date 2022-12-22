@@ -1,14 +1,15 @@
 M = {}
-function M.add(pattern_table, cmp_name, trigger_characters, test)
+function M.add(pattern_table, cmp_name, trigger_characters, rg_option, is_test)
+	rg_option = rg_option or ""
 	local cmp_table = {}
 	local function add_cmp(table, path)
 		for _, pattern in pairs(pattern_table) do
-			local handle = io.popen("rg '" .. pattern .. "' -IN --trim " .. path)
+			local handle = io.popen("rg -o " .. rg_option .. " '" .. pattern .. "' -IN --trim " .. path)
 			assert(handle)
 			local io_output = handle:read("*a")
 			for line in io_output:gmatch("([^\n]*)\n?") do
 				if line ~= "" then
-					if(test) then
+					if test then
 						print(line)
 					end
 					table[line] = 1
