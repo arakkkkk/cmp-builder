@@ -40,10 +40,10 @@ function M.add(pattern_table, cmp_name, trigger_characters, rg_option, is_test)
 	---Invoke completion (required).
 	---@param params cmp.SourceCompletionApiParams
 	---@param callback fun(response: lsp.CompletionResponse|nil)
-	local function add_tex_ref()
-		print(#cmp_table)
-		cmp_table = add_cmp(cmp_table, vim.fn.expand("%"))
-		print(#cmp_table)
+	local function add_cmp_callback()
+		-- print(#cmp_table)
+		-- cmp_table = add_cmp(cmp_table, vim.fn.expand("%"))
+		-- print(#cmp_table)
 
 		local cmps = {}
 		for k, _ in pairs(cmp_table) do
@@ -52,7 +52,7 @@ function M.add(pattern_table, cmp_name, trigger_characters, rg_option, is_test)
 		return cmps
 	end
 	function source:complete(params, callback)
-		callback(add_tex_ref())
+		callback(add_cmp_callback())
 	end
 	---Resolve completion item (optional). This is called right before the completion is about to be displayed.
 	---Useful for setting the text shown in the documentation window (`completion_item.documentation`).
