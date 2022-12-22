@@ -5,7 +5,7 @@ Create completion with nvim-cmp from ripgrep patterns.
 Using packer
 ```
 use({
-	"arakkkkk/cmp-builder.nvim",
+	"arakkkkk/cmp-builder",
 	requires = { "hrsh7th/nvim-cmp" }
 })
 ```

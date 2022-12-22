@@ -15,7 +15,7 @@ function M.add(pattern_table, cmp_name)
 		end
 		return table
 	end
-	cmp_table = add_cmp(pattern_table, cmp_table, vim.fn.getcwd())
+	cmp_table = add_cmp(cmp_table, vim.fn.getcwd())
 
 	local source = {}
 	---Return whether this source is available in the current context or not (optional).
@@ -38,7 +38,7 @@ function M.add(pattern_table, cmp_name)
 	local function add_tex_ref()
 		local cmp_table = {}
 
-		cmp_table = add_cmp(pattern_table, cmp_table, vim.fn.expand("%"))
+		cmp_table = add_cmp(cmp_table, vim.fn.expand("%"))
 
 		local cmps = {}
 		for k, _ in pairs(cmp_table) do
