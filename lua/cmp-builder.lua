@@ -8,6 +8,7 @@ function M.add(pattern_table, cmp_name, trigger_characters, test)
 			local io_output = handle:read("*a")
 			for line in io_output:gmatch("([^\n]*)\n?") do
 				if line ~= "" then
+					print(line)
 					if(test) then
 						print(line)
 					end
