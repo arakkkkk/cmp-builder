@@ -15,10 +15,10 @@ function M.add(pattern_table, cmp_name, trigger_characters, test)
 						table[line] = 1
 					end
 				end
+				handle:close()
 			else
 				print(error)
 			end
-			handle:close()
 		end
 		return table
 	end
