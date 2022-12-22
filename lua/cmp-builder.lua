@@ -1,5 +1,6 @@
 M = {}
 function M.add(pattern_table, cmp_name, trigger_characters, rg_option, is_test)
+	trigger_characters = trigger_characters or {"."}
 	rg_option = rg_option or ""
 	local cmp_table = {}
 	local function add_cmp(table, path)
