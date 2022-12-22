@@ -1,5 +1,5 @@
 M = {}
-function M.add(pattern_table, cmp_name)
+function M.add(pattern_table, cmp_name, trigger_characters)
 	local cmp_table = {}
 	local function add_cmp(table, path)
 		for _, pattern in pairs(pattern_table) do
@@ -30,7 +30,7 @@ function M.add(pattern_table, cmp_name)
 	end
 	---Return trigger characters for triggering completion (optional).
 	function source:get_trigger_characters()
-		return { "." }
+		return trigger_characters
 	end
 	---Invoke completion (required).
 	---@param params cmp.SourceCompletionApiParams
