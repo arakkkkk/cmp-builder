@@ -18,7 +18,9 @@ function M.add(pattern_table, cmp_name, trigger_characters, rg_option, is_test)
 			end
 			handle:close()
 		end
-		print("0000000000000000:")
+		if is_test then
+			print("--------------------------")
+		end
 		return table
 	end
 	cmp_table = add_cmp(cmp_table, vim.fn.getcwd())
