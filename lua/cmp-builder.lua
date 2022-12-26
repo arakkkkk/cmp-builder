@@ -6,20 +6,21 @@ function M.add(pattern_table, cmp_name, trigger_characters, rg_option, replaceme
 	local function add_cmp(table, path)
 		for _, pattern in pairs(pattern_table) do
 			local handle = io.popen("rg -o " .. rg_option .. " '" .. pattern .. "' -IN --trim " .. path)
-			assert(handle)
-			local io_output = handle:read("*a")
-			for line in io_output:gmatch("([^\n]*)\n?") do
-				if line ~= "" then
-					if replacement then
-						line = string.gsub(line, replacement["before"], replacement["after"])
+			if handle then
+				local io_output = handle:read("*a")
+				for line in io_output:gmatch("([^\n]*)\n?") do
+					if line ~= "" then
+						if replacement then
+							line = string.gsub(line, replacement["before"], replacement["after"])
+						end
+						if is_test then
+							print(line)
+						end
+						table[line] = 1
 					end
-					if is_test then
-						print(line)
-					end
-					table[line] = 1
 				end
+				handle:close()
 			end
-			handle:close()
 		end
 		if is_test then
 			print("--------------------------")
