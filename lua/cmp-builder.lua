@@ -5,8 +5,10 @@ function M.add(pattern_table, cmp_name, trigger_characters, rg_option, replaceme
 	local cmp_table = {}
 	local function add_cmp(table, path)
 		for _, pattern in pairs(pattern_table) do
+			if string.match(path, "%s") then
+				return table
+			end
 			local handle = io.popen("rg -o " .. rg_option .. " '" .. pattern .. "' -IN --trim " .. path)
-			path = string.gsub(path, " ", "\\\\ ")
 			if handle ~= nil then
 				local io_output = handle:read("*a")
 				for line in io_output:gmatch("([^\n]*)\n?") do
