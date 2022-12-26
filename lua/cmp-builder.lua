@@ -8,7 +8,7 @@ function M.add(pattern_table, cmp_name, trigger_characters, rg_option, replaceme
 			if string.match(path, "%s") then
 				return table
 			end
-			local handle = io.popen("rg -o " .. rg_option .. " '" .. pattern .. "' -IN --trim " .. path)
+			local handle = io.popen("rg -o " .. rg_option .. " '" .. pattern .. "' -IN --trim " .. "'" .. path .. "'")
 			if handle ~= nil then
 				local io_output = handle:read("*a")
 				for line in io_output:gmatch("([^\n]*)\n?") do
